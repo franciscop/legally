@@ -1,7 +1,7 @@
 {
   "name": "ianal",
   "version": "1.0.0",
-  "description": "Check the licenses for your packages",
+  "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "scripts": {
     "test": "npm test",
@@ -11,5 +11,23 @@
     "ianal": "index.js"
   },
   "author": "Francisco Presencia",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciscop/ianal.git"
+  },
+  "keywords": [
+    "ianal",
+    "licenses",
+    "check",
+    "legal",
+    "package",
+    "npm"
+  ],
+  "bugs": {
+    "url": "https://github.com/franciscop/ianal/issues"
+  },
+  "homepage": "https://github.com/franciscop/ianal#readme"
 }
