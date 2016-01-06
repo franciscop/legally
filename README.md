@@ -1,4 +1,4 @@
-# IANAL - check your dependencies licenses
+# IANAL - check your licenses
 
 > Note: I am not a lawyer and this is not legal advice
 
