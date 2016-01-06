@@ -1,0 +1,19 @@
+{
+  "name": "ianal",
+  "version": "1.0.0",
+  "description": "Check the licenses for your packages",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node index.js"
+  },
+  "bin": {
+    "ianal": "index.js"
+  },
+  "author": "Francisco Presencia",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}
