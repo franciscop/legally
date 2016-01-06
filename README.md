@@ -17,7 +17,7 @@ There are few flags that show extra information. These start by **`?`** and are 
 
 `?none`: the file where we are trying to locate the license couldn't be found, or the license itself couldn't be found.
 
-`?verify`: the license file *was* found and there's strong suggestions that there might be a license, but we just couldn't pare it automatically.
+`?verify`: the license file *was* found and there's strong suggestions that there might be a license, but we just couldn't parse it automatically.
 
 `?multiple` [not yet]: there are several licenses in this file/module.
 
