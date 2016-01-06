@@ -1,16 +1,15 @@
-# IANAL
+# IANAL - check your dependencies licenses
 
 > Note: I am not a lawyer and this is not legal advice
 
-Discover the license of the npm packages that you are using easily:
-
-![Licenses](licenses.png)
-
-Just install it globally and run it in your repository:
+Discover the license of the npm packages that you are using easily: Just install it globally and run it in your project folder:
 
 ```bash
 npm install ianal -g && ianal
 ```
+
+![Licenses](licenses.png)
+
 
 ## Documentation
 
