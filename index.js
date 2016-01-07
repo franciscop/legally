@@ -2,17 +2,7 @@
 
 var fs = require('fs');
 
-var licenseRegex = [
-  
-  // Some defaults with non-capturing groups (?:)
-  { name: 'MIT', regex: /(?:The )?MIT(?: (L|l)icense)/ },
-  { name: 'BSD', regex: /(?:The )?BSD(?: (L|l)icense)/ },
-  { name: 'ISC', regex: /(?:The )?ISC(?: (L|l)icense)/ },
-  
-  // This will attempt to capture the name and display it
-  { name: false, regex: /(?:The )?([\w-/\.]{3,}?) (L|l)icense/ }
-];
-
+var licenseRegex = require("./licenses.js");
 
 
 // Root project to analize
@@ -62,7 +52,7 @@ var licenses = fs.readdirSync(root + '/node_modules').reduce(function(all, name)
     || open(name, 'License') || open(name, 'License.md')
     || open(name, 'license') || open(name, 'license.md');
   mod.file = (!file) ? '?none' : licenseRegex.filter(function(license){
-    return license.regex.test(file);
+    return new RegExp(license.regex).test(file);
   }).map(function(license){
     // Need this double check in case only 'other' is matched, then extract it
     return license.name || file.match(license.regex)[1];
@@ -74,7 +64,7 @@ var licenses = fs.readdirSync(root + '/node_modules').reduce(function(all, name)
      || open(name, 'Readme') || open(name, 'Readme.md')
      || open(name, 'readme') || open(name, 'readme.md');
   mod.readme = (!file) ? '?none' : licenseRegex.filter(function(license){
-    return license.regex.test(file);
+    return  new RegExp(license.regex).test(file);
   }).map(function(license){
     return license.name || file.match(license.regex)[1];
   }).shift() || '?verify';
