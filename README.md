@@ -13,13 +13,12 @@ npm install ianal -g && ianal
 
 ## Documentation
 
-There are few flags that show extra information. These start by **`?`** and are shown instead of the license name:
+There are a couple of special cases:
 
-`?none`: the file where we are trying to locate the license couldn't be found, or the license itself couldn't be found.
+- `-`: the file where we are trying to locate the license couldn't be found, or the license itself couldn't be found.
 
-`?verify`: the license file *was* found and there's strong suggestions that there might be a license, but we just couldn't parse it automatically.
+- `? verify`: the license file *was* found and there's strong suggestions that there might be a license, but we just couldn't parse it automatically.
 
-`?multiple` [not yet]: there are several licenses in this file/module.
 
 
 
@@ -43,12 +42,12 @@ It attempts to find MIT, BSD and ISC, and then there's a regex that attempts to 
 
 ```js
 var licenseRegex = [
-  
+
   // Some defaults with non-capturing groups (?:)
   { name: 'MIT', regex: /(?:The )?MIT(?: (L|l)icense)/ },
   { name: 'BSD', regex: /(?:The )?BSD(?: (L|l)icense)/ },
   { name: 'ISC', regex: /(?:The )?ISC(?: (L|l)icense)/ },
-  
+
   // This will attempt to capture the name and display it
   { name: false, regex: /(?:The )?([\w-/\.]{3,}?) (L|l)icense/ }
 ];
