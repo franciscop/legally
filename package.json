@@ -7,6 +7,7 @@
     "test": "npm run test-simple && npm run test-full",
     "test-simple": "cd ./test/simple && node ../../index.js",
     "test-full": "cd ./test/full && node ../../index.js",
+    "test-mocha": "cd ./test/moch && node ../../index.js",
     "start": "node index.js"
   },
   "bin": {
@@ -14,11 +15,7 @@
   },
   "author": "Francisco Presencia",
   "license": "MIT",
-  "dependencies": {
-    "jquery": "^3.1.1",
-    "picnic": "^6.2.4",
-    "umbrellajs": "^2.6.7"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "repository": {
     "type": "git",

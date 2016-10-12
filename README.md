@@ -8,8 +8,13 @@ Discover the license of the npm packages that you are using easily: Just install
 npm install legally -g && legally
 ```
 
-![Licenses](licenses.png)
+Package's licenses:
 
+![Licenses](images/licenses.png)
+
+License count:
+
+![License count](images/count.png)
 
 ## Documentation
 
