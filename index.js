@@ -1,19 +1,12 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var normalize = require('./lib/normalize');
 
-var licenseRegex = [
-
-  // Some defaults with non-capturing groups (?:)
-  { name: 'MIT', regex: /(?:The )?MIT(?: (L|l)icense)/ },
-  { name: 'BSD', regex: /(?:The )?BSD(?: (L|l)icense)/ },
-  { name: 'ISC', regex: /(?:The )?ISC(?: (L|l)icense)/ },
-
-  // This will attempt to capture the name and display it
-  { name: false, regex: /(?:The )?([\w-/\.]{3,}?) (L|l)icense/ }
-];
-
-
+// Import all licenses
+var parsers = require('fs').readdirSync(__dirname + '/licenses').map(file =>
+  require('./licenses/' + file)
+);
 
 // Root project to analize
 var root = process.cwd();
@@ -35,7 +28,6 @@ var deff = {
 };
 
 
-
 if (!fs.existsSync(root + '/node_modules')){
   return console.log('No modules installed');
 }
@@ -47,40 +39,48 @@ var licenses = fs.readdirSync(root + '/node_modules').reduce(function(all, name)
   // Invalid module (such as .bin)
   if (/^\./.test(name)) return all;
 
-
   // PACKAGE.JSON
   var pack = open(name, 'package.json', true);
-  var license = !pack ? '?none' : pack.license || pack.licenses || '-';
+  var license = !pack ? '-' : pack.license || pack.licenses || '-';
   license = Array.isArray(license) && license.length > 1 ? '?multiple' : license;
+  license = Array.isArray(license) ? license[0] : license;
+  license = license.type || license;
   license = typeof license === 'string' ? license : license.type ||  '? verify';
-  mod.package = license;
+  mod.package = license.length > 1 ? license.replace(/\-/g, ' ') : license;
 
 
   // LICENSE (file)
   // Let's check it also with the file
   var file = open(name, 'LICENSE') || open(name, 'LICENSE.md')
     || open(name, 'License') || open(name, 'License.md')
-    || open(name, 'license') || open(name, 'license.md');
-  mod.file = (!file) ? '-' : licenseRegex.filter(function(license){
-    return license.regex.test(file);
-  }).map(function(license){
-    // Need this double check in case only 'other' is matched, then extract it
-    return license.name || file.match(license.regex)[1];
-  }).shift() || '? verify';
+    || open(name, 'license') || open(name, 'license.md')
+    || open(name, 'LICENCE') || open(name, 'LICENCE.md')
+    || open(name, 'Copying.txt') || open(name, 'COPYING.txt')
+    || open(name, 'Copying') || open(name, 'COPYING')
+    || open(name, 'Copying.md') || open(name, 'Copying.md');
+  // mod.file = (!file) ? '-' : licenseRegex.filter(function(license){
+  //   return license.regex.test(file);
+  // }).map(function(license){
+  //   // Need this double check in case only 'other' is matched, then extract it
+  //   return license.name || file.match(license.regex)[1];
+  // }).shift() || '? verify';
+
+
+  mod.file = require('./lib/parselicense')(file, parsers, '? verify');
+
 
 
   // README
   var file = open(name, 'README') || open(name, 'README.md')
      || open(name, 'Readme') || open(name, 'Readme.md')
      || open(name, 'readme') || open(name, 'readme.md');
-  mod.readme = (!file) ? '-' : licenseRegex.filter(function(license){
-    return license.regex.test(file);
-  }).map(function(license){
-    return license.name || file.match(license.regex)[1];
-  }).shift() || '? verify';
+  // mod.readme = (!file) ? '-' : licenseRegex.filter(function(license){
+  //   return license.regex.test(file);
+  // }).map(function(license){
+  //   return license.name || file.match(license.regex)[1];
+  // }).shift() || '? verify';
 
-
-
+  mod.readme = require('./lib/parselicense')(file, parsers, '-');
 
   all.package[mod.package] = [name].concat(all && all.package[mod.package] || []);
   all.file[mod.file] = [name].concat(all && all.file[mod.file] || []);
@@ -118,22 +118,36 @@ var licenses = fs.readdirSync(root + '/node_modules').reduce(function(all, name)
 
 
 
-
 // Display all of the info of the packages
-var log = console.log;
+var table = require('./lib/table');
+var data = Object.keys(licenses.modules).map(key => {
+  var one = licenses.modules[key];
+  return [key].concat(one);
+});
 
-log("\n\n|------------------------------|---------------|---------------|---------------|");
-    log("| Module name                  | package       | LICENSE       | README        |");
-    log("|------------------------------|---------------|---------------|---------------|");
-for (var name in licenses.modules) {
-  var len = 30 - name.length;
-  var str = '| ' + name + new Array(len > 0 ? len : 0).join(' ');
-  str += '| ' + licenses.modules[name].map(function(name){
-    var len = 15 - name.length;
-    return name + new Array(len > 0 ? len : 0).join(' ');
-  }).join('| ') + '|';
-  console.log(str);
-}
-    log("|------------------------------|---------------|---------------|---------------|\n");
+table(data, {
+  'Module name': 25,
+  'package': 14,
+  'License': 14,
+  'README': 14
+}, { title: 'Licenses' });
 
-//console.log("\n\nResult: \n", licenses.total);
+
+
+var count = Object.keys(licenses.modules).reduce((all, key) => {
+  var one = licenses.modules[key];
+  // Only valid names and make a unique license type per package
+  one = [...new Set(one.filter(name => /^[^\?\-]/.test(name)))];
+  one.forEach(o => { all[o] = all[o] ? all[o] + 1 : 1; });
+  return all;
+}, {});
+
+count = Object.keys(count)
+  .map(name => ({ name: name, number: count[name] }))
+  .sort((a, b) => b.number - a.number)
+  .map(license => [license.name, license.number]);
+
+table(count, { 'License': 30, 'Number': 9 }, { title: 'License count', margin: 17 });
+
+
+module.exports = licenses;

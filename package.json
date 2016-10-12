@@ -1,25 +1,31 @@
 {
-  "name": "ianal",
-  "version": "1.1.0",
+  "name": "legally",
+  "version": "1.0.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "scripts": {
-    "test": "npm test",
+    "test": "npm run test-simple && npm run test-full",
+    "test-simple": "cd ./test/simple && node ../../index.js",
+    "test-full": "cd ./test/full && node ../../index.js",
     "start": "node index.js"
   },
   "bin": {
-    "ianal": "index.js"
+    "legally": "index.js"
   },
   "author": "Francisco Presencia",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "picnic": "^6.2.4",
+    "umbrellajs": "^2.6.7"
+  },
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/franciscop/ianal.git"
+    "url": "git+https://github.com/franciscop/legally.git"
   },
   "keywords": [
-    "ianal",
+    "legally",
     "licenses",
     "check",
     "legal",
@@ -27,7 +33,7 @@
     "npm"
   ],
   "bugs": {
-    "url": "https://github.com/franciscop/ianal/issues"
+    "url": "https://github.com/franciscop/legally/issues"
   },
-  "homepage": "https://github.com/franciscop/ianal#readme"
+  "homepage": "https://github.com/franciscop/legally#readme"
 }

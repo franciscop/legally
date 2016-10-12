@@ -1,11 +1,11 @@
-# IANAL - check your licenses
+# Legally - check your licenses
 
 > Note: I am not a lawyer and this is not legal advice
 
 Discover the license of the npm packages that you are using easily: Just install it globally and run it in your project folder:
 
 ```bash
-npm install ianal -g && ianal
+npm install legally -g && legally
 ```
 
 ![Licenses](licenses.png)
