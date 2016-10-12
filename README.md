@@ -43,19 +43,21 @@ Not exactly, it does check all of the modules in `node_modules` except those tha
 
 **What licenses does it check?**
 
-It attempts to find MIT, BSD and ISC, and then there's a regex that attempts to find other licenses automatically. This list *is* short, so please feel free to expand it:
+It attempts to find apache, BSD (2 and 3 Clause), CC0, ISC and MIT. This list *is* short, so please feel free to expand it adding a new file in `/licenses`:
 
 ```js
-var licenseRegex = [
+// File /licenses/mit.js
+module.exports.name = 'MIT';
+module.exports.regex = /(?:The )?MIT(?: (L|l)icense)/;
+module.exports.text = `
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  ...
+  furnished to do so, subject to the following conditions:
 
-  // Some defaults with non-capturing groups (?:)
-  { name: 'MIT', regex: /(?:The )?MIT(?: (L|l)icense)/ },
-  { name: 'BSD', regex: /(?:The )?BSD(?: (L|l)icense)/ },
-  { name: 'ISC', regex: /(?:The )?ISC(?: (L|l)icense)/ },
-
-  // This will attempt to capture the name and display it
-  { name: false, regex: /(?:The )?([\w-/\.]{3,}?) (L|l)icense/ }
-];
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+`;
+module.exports.fragments = module.exports.text.split(/\n\n/);
 ```
 
 Another idea is that we could add a part of the license text to the regex, so the match is more 'secure'. It works pretty well for my purposes right now though.
