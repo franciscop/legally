@@ -2,6 +2,11 @@
 
 var licenses = require('./lib/legally')(process.cwd());
 
+if (Object.keys(licenses).length === 0) {
+  console.error('No modules installed. Are you in the right directory?');
+  return;
+}
+
 // Display all of the info of the packages
 var table = require('./lib/table');
 var data = Object.keys(licenses).map(key => {
