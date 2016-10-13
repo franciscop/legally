@@ -1,10 +1,10 @@
 {
   "name": "legally",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/test.js",
+    "test": "mocha ./test/test.js",
     "test-simple": "cd ./test/simple && node ../../index.js",
     "test-full": "cd ./test/full && node ../../index.js",
     "test-mocha": "cd ./test/moch && node ../../index.js",

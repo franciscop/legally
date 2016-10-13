@@ -14,7 +14,7 @@ table(data, {
   'package': 14,
   'License': 14,
   'README': 14
-}, { title: 'Licenses' });
+}, { title: 'Licenses', repeat: 30 });
 
 
 
