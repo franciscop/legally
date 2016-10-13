@@ -5,16 +5,23 @@
 Discover the license of the npm packages that you are using easily: Just install it globally and run it in your project folder:
 
 ```bash
-npm install legally -g && legally
+npm install legally -g
+legally
 ```
 
-Package's licenses:
+It will display first those node_modules' licenses:
 
 ![Licenses](images/licenses.png)
 
-License count:
+And then the license count in your project (different example from the one above):
 
 ![License count](images/count.png)
+
+Finally, you will get a small report stating whether everything is correct or not:
+
+![License count](images/report-clear.png)
+
+![License count](images/report-error.png)
 
 ## Documentation
 
