@@ -4,7 +4,7 @@
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test-simple && npm run test-full",
+    "test": "node ./test/test.js",
     "test-simple": "cd ./test/simple && node ../../index.js",
     "test-full": "cd ./test/full && node ../../index.js",
     "test-mocha": "cd ./test/moch && node ../../index.js",
@@ -16,7 +16,10 @@
   "author": "Francisco Presencia",
   "license": "MIT",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/franciscop/legally.git"
