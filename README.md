@@ -1,11 +1,12 @@
 # Legally - check your licenses
 
-> Note: I am not a lawyer and this is not legal advice
+> Disclaimer: I am not a lawyer and this is not legal advice
 
 Discover the license of the npm packages that you are using easily: Just install it globally and run it in your project folder:
 
 ```bash
 npm install legally -g
+cd ./YOUR_PROJECT_NAME
 legally
 ```
 
