@@ -1,6 +1,6 @@
 {
   "name": "legally",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "scripts": {
