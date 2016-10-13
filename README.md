@@ -12,27 +12,53 @@ legally
 
 It will display first those node_modules' licenses:
 
-![Licenses](images/licenses.png)
+![Licenses](images/packages.png)
+
+> `-` means the license couldn't be found and `? verify` that it was found but couldn't be parsed
 
 And then the license count in your project (different example from the one above):
 
-![License count](images/count.png)
+![License count](images/licenses.png)
 
 Finally, you will get a small report stating whether everything is correct or not:
 
-![License count](images/report-clear.png)
+![License count](images/reports-clear.png)
 
-![License count](images/report-error.png)
+![License count](images/reports-error.png)
+
+
 
 ## Documentation
 
-There are a couple of special cases:
+You can pass few command line arguments. The main ones are to only show a part of the whole analysis:
 
-- `-`: the file where we are trying to locate the license couldn't be found, or the license itself couldn't be found.
+```bash
+# List of packages and their licenses
+legally -packages
 
-- `? verify`: the license file *was* found and there's strong suggestions that there might be a license, but we just couldn't parse it automatically.
+# Breakdown of what licenses your dependencies have
+legally -licenses
 
+# Overview with actionable points
+legally -reports
+```
 
+If the table is not displaying correctly, you can pass it a `--border` option with 'ascii':
+
+```bash
+legally --border thin
+legally --border bold
+legally --border double
+legally --border ascii  # This will work in most systems
+```
+
+**[Not yet implemented]** You can also check any remote package by doing:
+
+```bash
+legally express -report
+```
+
+It will take a while since it has to download it and it's dependencies.
 
 
 
