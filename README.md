@@ -38,7 +38,7 @@ Make sure that you are in the root folder for your project; doing `ls` you shoul
 
 **Does it check all modules by npm?**
 
-Not exactly, it does check all of the modules in `node_modules` except those that start by `.`, but it doesn't go deep checking sub-modules
+Yes, it will check all of the modules in `node_modules` and the nested ones except for `.bin`.
 
 
 **What licenses does it check?**
