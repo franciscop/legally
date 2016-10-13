@@ -5,7 +5,7 @@
 Discover the license of the npm packages that you are using easily: Just install it globally and run it in your project folder:
 
 ```bash
-npm install legally -g
+npm install legally -g    # Better keep legally global
 cd ./YOUR_PROJECT_NAME
 legally
 ```
@@ -30,7 +30,31 @@ Finally, you will get a small report stating whether everything is correct or no
 
 ## Documentation
 
-You can pass few command line arguments. The main ones are to only show a part of the whole analysis:
+The plain command will perform an analysis in-depth of your installed packages and report everything, and that's likely all that you will need:
+
+```bash
+legally
+```
+
+
+### Remote packages
+
+You could want to check the licenses for a library before installing it. You can check any remote package (here checking `express`) by doing:
+
+```bash
+legally express
+```
+
+It will take a while since it has to download it and its dependencies and then it will perform the same analysis as if it was the only package in your repository. You can also check many at the same time:
+
+```bash
+legally express body-parser formidable
+```
+
+
+### Selective analysis
+
+To show only a part of the analysis, pass the name of the part that you want to show
 
 ```bash
 # List of packages and their licenses
@@ -43,7 +67,10 @@ legally -licenses
 legally -reports
 ```
 
-If the table is not displaying correctly, you can pass it a `--border` option with 'ascii':
+
+### Styles
+
+You can change the style of the table with the `--border` option. Try the `ascii` option if the table is not displayed correctly by default:
 
 ```bash
 legally --border thin
@@ -52,13 +79,8 @@ legally --border double
 legally --border ascii  # This will work in most systems
 ```
 
-**[Not yet implemented]** You can also check any remote package by doing:
+![ASCII style](images/ascii.png)
 
-```bash
-legally express -report
-```
-
-It will take a while since it has to download it and it's dependencies.
 
 
 
@@ -69,15 +91,21 @@ It will take a while since it has to download it and it's dependencies.
 Make sure that you are in the root folder for your project; doing `ls` you should be able to see `node_modules`
 
 
+**I have more licenses than dependencies**
+
+That could happen. While we only account for one license type per project, a project can have (and many do it) several licenses at the same time.
+
+In the Packages table, you can see this is indicated with a `+`. For example, `JSONStream` has these licenses [parsed out of `package.json`](https://github.com/dominictarr/JSONStream/blob/master/package.json#L10): `MIT + Apache 2`
+
 
 **Does it check all modules by npm?**
 
-Yes, it will check all of the modules in `node_modules` and the nested ones except for `.bin`.
+Yes, it will check all of the modules in `node_modules` and the nested ones except for folders starting with `.`.
 
 
 **What licenses does it check?**
 
-It attempts to find Apache, BSD (2 and 3 Clause), CC0, ISC and MIT. This list *is* short, so please feel free to expand it adding a new file in `/licenses`:
+It attempts to find Apache, BSD (2 and 3 Clause), CC0, ISC and MIT. It will also attempt to clean existing ones. The list *is* short, so please feel free to expand it adding a new file in `/licenses`:
 
 ```js
 // File /licenses/mit.js
