@@ -25,6 +25,9 @@ opt.type = opt.type || [];
 opt.filter = opt.filter instanceof Array ? opt.filter : [opt.filter];
 opt.type = opt.type instanceof Array ? opt.type : [opt.type];
 
+opt.width = opt.width || 80;
+opt.width = typeof opt.width === 'number' ? opt.width : 80;
+
 
 var licenses;
 if (opt._.length) {

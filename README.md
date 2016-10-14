@@ -119,6 +119,12 @@ legally --border ascii  # This will work in most systems
 
 ![ASCII style](images/borders.png)
 
+Lastly, you can also add a width if not all of your licenses are displayed correctly and will adjust it *approximately*. Make sure to adjust your terminal size accordingly. It defaults to `80`:
+
+```bash
+legally --width 100
+```
+
 
 
 
