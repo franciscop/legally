@@ -117,7 +117,7 @@ legally --border double
 legally --border ascii  # This will work in most systems
 ```
 
-![ASCII style](images/ascii.png)
+![ASCII style](images/borders.png)
 
 
 
