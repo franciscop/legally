@@ -1,4 +1,4 @@
-# Legally `legally`
+# Legally - `legally`
 
 > Disclaimer: I am not a lawyer and this is not legal advice
 
