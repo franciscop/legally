@@ -6,9 +6,8 @@ Discover the license of npm packages that you are using in an easy way:
 
 ```bash
 npm install legally -g    # Better keep legally global
-cd ./YOUR_PROJECT_NAME
-legally                   # For your project
-legally express           # Check express' licenses
+legally                   # Check licenses of current directory
+legally express           # Check an npm library's licenses
 ```
 
 It will display first those node_modules' licenses:
