@@ -3,35 +3,32 @@
 var legally = require('./lib/legally');
 var analysis = require('./lib/analysis');
 var remote = require('./lib/remote');
+var opt = require('minimist')(process.argv.filter(e => !/\/.+$/.test(e)));
 
+opt.show = opt.show || [];
+opt.show = opt.show instanceof Array ? opt.show : [opt.show];
 
-// Process the command line arguments
-var opt = process.argv.filter(e => !/\/.+$/.test(e)).reduce((opt, arg, i, all) => {
-  if (/^\-+/.test(arg)) {
-    if (/\=/.test(arg)) {
-      parts = arg.replace(/^\-+/, '').split('=');
-      opt[parts[0]] = parts[1];
-    } else {
-      opt[arg.replace(/^\-+/, '')] = all[i + 1] || !/^\-\-/.test(arg)
-    }
-  } else {
-    // The last one didn't start by --smth
-    if (!all[i-1] || !/^\-\-/.test(all[i-1])) {
-      opt.remote = (opt.remote || []).concat(arg);
-    }
+var shortnames = {p: 'packages', l: 'licenses', r: 'reports'};
+for (var key in shortnames) {
+  if (opt[key]) {
+    opt.show.push(shortnames[key]);
   }
-  return opt;
-}, { packages: false, licenses: false, reports: false });
-
-if (!opt.packages && !opt.licenses && !opt.reports) {
-  opt.packages = true;
-  opt.licenses = true;
-  opt.reports = true;
 }
 
+if (opt.show.length === 0) {
+  opt.show = ['packages', 'licenses', 'reports'];
+}
+
+opt.filter = opt.filter || [];
+opt.type = opt.type || [];
+
+opt.filter = opt.filter instanceof Array ? opt.filter : [opt.filter];
+opt.type = opt.type instanceof Array ? opt.type : [opt.type];
+
+
 var licenses;
-if (opt.remote) {
-  remote(opt.remote, function(err, folder){
+if (opt._.length) {
+  remote(opt._, function(err, folder){
     if (err || !folder) {
       console.log('Could not handle remote packages');
       process.exit();

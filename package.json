@@ -1,6 +1,6 @@
 {
   "name": "legally",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,9 @@
   },
   "author": "Francisco Presencia",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "minimist": "^1.2.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.1.2"

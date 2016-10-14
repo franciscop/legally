@@ -2,12 +2,13 @@
 
 > Disclaimer: I am not a lawyer and this is not legal advice
 
-Discover the license of the npm packages that you are using easily: Just install it globally and run it in your project folder:
+Discover the license of npm packages that you are using in an easy way:
 
 ```bash
 npm install legally -g    # Better keep legally global
 cd ./YOUR_PROJECT_NAME
-legally
+legally                   # For your project
+legally express           # Check express' licenses
 ```
 
 It will display first those node_modules' licenses:
@@ -58,22 +59,50 @@ To show only a part of the analysis, pass the name of the part that you want to 
 
 ```bash
 # List of packages and their licenses
-legally -packages
+legally -p
+legally --show packages
 
 # Breakdown of what licenses your dependencies have
-legally -licenses
+legally -l
+legally --show licenses
 
 # Overview with actionable points
-legally -reports
+legally -r
+legally --show reports
 ```
 
-### Filter
-
-If you want to filter the license type and only show one, do so by writing:
+You can also combine them with:
 
 ```bash
-legally --type mit
+legally -lr   # licenses and reports
+legally --show licenses --show reports  # same
 ```
+
+
+
+### Type and filter
+
+You can perform two kind of filters; strict filter (`type`) or soft filter (`filter`). The **type** will match only those passed literally, while the soft filter will look for the name within the license type. Both are case insensitive:
+
+```bash
+legally --type mit  # match "mit" & "MIT"
+legally --filter bsd   # match "BSD", "BSD 3 Clause", etc
+```
+
+You can also combine them
+
+```bash
+# Display MIT and BSD family
+legally --type mit --filter bsd
+```
+
+Or just put several filters
+
+```bash
+# Display MIT and BSD families
+legally --filter mit --filter bsd
+```
+
 
 
 
