@@ -39,7 +39,7 @@ legally
 
 ### Remote packages
 
-You could want to check the licenses for a library before installing it. You can check any remote package (here checking `express`) by doing:
+To check a package's license before adding it to your project name it and legally will analyze it. Let's check `express`'s licenses':
 
 ```bash
 legally express
@@ -66,6 +66,15 @@ legally -licenses
 # Overview with actionable points
 legally -reports
 ```
+
+### Filter
+
+If you want to filter the license type and only show one, do so by writing:
+
+```bash
+legally --type mit
+```
+
 
 
 ### Styles

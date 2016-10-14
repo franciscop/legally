@@ -15,8 +15,10 @@ var opt = process.argv.filter(e => !/\/.+$/.test(e)).reduce((opt, arg, i, all) =
       opt[arg.replace(/^\-+/, '')] = all[i + 1] || !/^\-\-/.test(arg)
     }
   } else {
-    console.log("WTF", arg);
-    opt.remote = (opt.remote || []).concat(arg);
+    // The last one didn't start by --smth
+    if (!all[i-1] || !/^\-\-/.test(all[i-1])) {
+      opt.remote = (opt.remote || []).concat(arg);
+    }
   }
   return opt;
 }, { packages: false, licenses: false, reports: false });
