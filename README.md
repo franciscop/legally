@@ -5,7 +5,7 @@
 Discover the license of npm packages that you are using in an easy way:
 
 ```bash
-npm install legally -g    # Better keep legally global
+npm install legally -g    # Make it work everywhere
 legally                   # Check licenses of current directory
 legally express           # Check an npm library's licenses
 ```
