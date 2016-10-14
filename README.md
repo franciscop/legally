@@ -82,11 +82,11 @@ legally --show licenses --show reports  # same
 
 ### Type and filter
 
-You can perform two kind of filters; strict filter (`type`) or soft filter (`filter`). The **type** will match only those passed literally, while the soft filter will look for the name within the license type. Both are case insensitive:
+You can perform two kind of filters; strict filter (`type`) or soft filter (`filter`) both of them case-insensitive. The **type** will match only those passed literally, while the **filter** will look for the name within the license type:
 
 ```bash
-legally --type mit  # match "mit" & "MIT"
-legally --filter bsd   # match "BSD", "BSD 3 Clause", etc
+legally --type mit  # match "MIT"
+legally --filter cc   # match "cc0", "cc-by 3.0", etc
 ```
 
 You can also combine them
