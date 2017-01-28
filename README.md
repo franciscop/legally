@@ -133,7 +133,7 @@ legally --width 100
 
 **WTF does this license mean?**
 
-There's a service called [TL;DR Legal](https://tldrlegal.com/) that helps you navigate those licenses and [Elad Nava](https://eladnava.com/) created [tldrlegal](https://github.com/eladnava/tldrlegal) based on that and built on top of `legally`.
+There's a service called [TL;DR Legal](https://tldrlegal.com/) that helps you navigate those licenses and [Elad Nava](https://eladnava.com/) created [**tldrlegal**](https://github.com/eladnava/tldrlegal) based on that and built on top of `legally`.
 
 
 **It says `'No modules installed'`**
