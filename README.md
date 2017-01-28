@@ -26,6 +26,8 @@ Finally, you will get a small report stating whether everything is correct or no
 
 ![License count](images/reports-error.png)
 
+> If you want to understand what the licenses mean, [Elad Nava](https://eladnava.com/) created [tldrlegal](https://github.com/eladnava/tldrlegal) based on `legally`.
+
 
 
 ## Documentation
@@ -128,6 +130,11 @@ legally --width 100
 
 
 ## FAQ
+
+**WTF does this license mean?**
+
+There's a service called [TL;DR Legal](https://tldrlegal.com/) that helps you navigate those licenses and [Elad Nava](https://eladnava.com/) created [tldrlegal](https://github.com/eladnava/tldrlegal) based on that and built on top of `legally`.
+
 
 **It says `'No modules installed'`**
 
