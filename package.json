@@ -1,6 +1,6 @@
 {
   "name": "legally",
-  "version": "2.8.1",
+  "version": "2.9.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "engines" : { "node" : ">=6.0.0" },
