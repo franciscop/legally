@@ -120,6 +120,13 @@ legally --border ascii  # This will work in most systems
 
 ![ASCII style](images/borders.png)
 
+You can use the `--plain` option for output without any [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code):
+
+```bash
+legally --plain
+legally --plain > license-report.txt
+```
+
 Lastly, you can also add a width if not all of your licenses are displayed correctly and will adjust it *approximately*. Make sure to adjust your terminal size accordingly. It defaults to `80`:
 
 ```bash
