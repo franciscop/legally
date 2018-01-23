@@ -1,9 +1,11 @@
 {
   "name": "legally",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
-  "engines" : { "node" : ">=6.0.0" },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "test": "mocha ./test/test.js",
     "test-simple": "cd ./test/simple && node ../../index.js",
