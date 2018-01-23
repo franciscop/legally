@@ -23,6 +23,7 @@ if (opt.show.length === 0) {
 
 opt.filter = opt.filter || [];
 opt.type = opt.type || [];
+opt.plain = Boolean(opt.plain);
 
 opt.filter = opt.filter instanceof Array ? opt.filter : [opt.filter];
 opt.type = opt.type instanceof Array ? opt.type : [opt.type];
