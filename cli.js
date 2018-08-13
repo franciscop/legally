@@ -14,6 +14,8 @@ if (/^win/.test(process.platform)) {
 
 opt.routes = opt._;
 
+// Need to wait a bit before resolving
+// See: https://stackoverflow.com/a/50451612/938236
 var done = (function wait () { if (!done) setTimeout(wait, 1000) })();
 
 Promise.resolve(legally(opt)).then(function(licenses) {
