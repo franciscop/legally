@@ -4,8 +4,6 @@ var package = require('../lib/package');
 
 var legally = require('../lib/legally.js')(__dirname + '/moch');
 
-console.log(legally);
-
 describe('package.js', function(){
   it('should be defined', function(){
     expect(package).to.be.a('function');

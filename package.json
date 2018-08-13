@@ -1,6 +1,6 @@
 {
   "name": "legally",
-  "version": "2.10.0",
+  "version": "3.0.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "index.js",
   "engines": {
@@ -8,13 +8,13 @@
   },
   "scripts": {
     "test": "mocha ./test/test.js",
-    "test-simple": "cd ./test/simple && node ../../index.js",
-    "test-full": "cd ./test/full && node ../../index.js",
-    "test-mocha": "cd ./test/moch && node ../../index.js",
-    "start": "node index.js"
+    "test-simple": "cd ./test/simple && node ../../cli.js",
+    "test-full": "cd ./test/full && node ../../cli.js",
+    "test-mocha": "cd ./test/moch && node ../../cli.js",
+    "start": "node cli.js"
   },
   "bin": {
-    "legally": "index.js"
+    "legally": "cli.js"
   },
   "author": "Francisco Presencia",
   "license": "MIT",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.1.2"
+    "mocha": "^5.2.0"
   },
   "repository": {
     "type": "git",

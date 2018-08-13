@@ -1,54 +1,53 @@
-#!/usr/bin/env node
-
 var legally = require('./lib/legally');
 var analysis = require('./lib/analysis');
 var remote = require('./lib/remote');
-var opt = require('minimist')(process.argv.filter(e => !/\/.+$/.test(e)));
 
-var isWin = /^win/.test(process.platform);
-
-opt.show = opt.show || [];
-opt.show = opt.show instanceof Array ? opt.show : [opt.show];
-
-var shortnames = {p: 'packages', l: 'licenses', r: 'reports'};
-for (var key in shortnames) {
-  if (opt[key]) {
-    opt.show.push(shortnames[key]);
+module.exports = (opt) => {
+  opt = opt || {};
+  if (typeof opt === 'string') {
+    opt = { routes: [opt] };
   }
-}
+  if (Array.isArray(opt)) {
+    opt = { routes: opt };
+  }
+  opt.routes = opt.routes || [];
 
-if (opt.show.length === 0) {
-  opt.show = ['packages', 'licenses', 'reports'];
-}
+  opt.show = opt.show || [];
+  opt.show = opt.show instanceof Array ? opt.show : [opt.show];
 
-opt.filter = opt.filter || [];
-opt.type = opt.type || [];
-opt.plain = Boolean(opt.plain);
+  var shortnames = {p: 'packages', l: 'licenses', r: 'reports'};
+  for (var key in shortnames) {
+    if (opt[key]) {
+      opt.show.push(shortnames[key]);
+    }
+  }
 
-opt.filter = opt.filter instanceof Array ? opt.filter : [opt.filter];
-opt.type = opt.type instanceof Array ? opt.type : [opt.type];
+  if (opt.show.length === 0) {
+    opt.show = ['packages', 'licenses', 'reports'];
+  }
 
-opt.width = opt.width || 80;
-opt.width = typeof opt.width === 'number' ? opt.width : 80;
+  opt.filter = opt.filter || [];
+  opt.type = opt.type || [];
+  opt.plain = Boolean(opt.plain);
 
-// node on windows inserts extra into argv that we need to remove
-// could be a bug in minimist
-if (isWin) {
-  opt._ = opt._.slice(2);
-}
+  opt.filter = opt.filter instanceof Array ? opt.filter : [opt.filter];
+  opt.type = opt.type instanceof Array ? opt.type : [opt.type];
 
-var licenses;
-if (opt._.length) {
-  remote(opt._, function(err, folder){
-    if (err || !folder) {
+  opt.width = opt.width || 80;
+  opt.width = typeof opt.width === 'number' ? opt.width : 80;
+
+  var licenses;
+  if (!opt.routes.length) return legally(process.cwd());
+
+  return remote(opt.routes).then(function (folder){
+    console.log(folder);
+    if (!folder) {
       console.log('Could not handle remote packages');
       process.exit();
     }
-    analysis(legally(folder), opt);
+    return legally(folder);
+  }).catch(function(error) {
+    console.log(error);
+    process.exit();
   });
-} else {
-  licenses = legally(process.cwd());
-  analysis(licenses, opt);
-}
-
-module.exports = licenses;
+};

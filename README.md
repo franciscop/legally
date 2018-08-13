@@ -32,6 +32,8 @@ Finally, you will get a small report stating whether everything is correct or no
 
 ## Documentation
 
+> You can use this library programmatically with Node.js as well: [Node.js API](#nodejs-api)
+
 The plain command will perform an analysis in-depth of your installed packages and report everything, and that's likely all that you will need:
 
 ```bash
@@ -133,6 +135,63 @@ Lastly, you can also add a width if not all of your licenses are displayed corre
 legally --width 100
 ```
 
+
+## Node.js API
+
+```js
+const legally = require('legally');
+
+(async () => {
+  const licenses = await legally('express');
+  console.log(licenses);
+  // {
+  //   'accepts@1.3.5': { package: [ 'MIT' ], license: [ 'MIT' ], readme: [] },
+  //   'array-flatten@1.1.1': { package: [ 'MIT' ], license: [ 'MIT' ], readme: [] },
+  //   ...
+  // }
+})();
+```
+
+Note: to avoid your Node.js process from exiting too early if you copy-paste the above example, [see this StackOverflow answer (by myself)](https://stackoverflow.com/a/50451612/938236):
+
+```js
+const legally = require('legally');
+
+var done = (function wait () { if (!done) setTimeout(wait, 1000) })();
+
+(async () => {
+  const licenses = await legally('express');
+  console.log(licenses);
+  // {
+  //   'accepts@1.3.5': { package: [ 'MIT' ], license: [ 'MIT' ], readme: [] },
+  //   'array-flatten@1.1.1': { package: [ 'MIT' ], license: [ 'MIT' ], readme: [] },
+  //   ...
+  // }
+  done = true;
+})();
+```
+
+You can put each package with a single license string like `MIT` or `MIT+ISC`:
+
+```js
+const legally = require('legally');
+
+const unique = (value, index, self) => self.indexOf(value) === index;
+const toStr = lic => [...lic.package, ...lic.license, ...lic.readme].filter(unique).join('+');
+const plain = licenses => Object.entries(licenses).reduce((obj, [pack, lic]) => ({
+  ...obj, [pack]: toStr(lic)
+}), {});
+
+(async () => {
+  const licenses = await legally('express');
+  console.log(plain(licenses));
+  // {
+  //   'accepts@1.3.5': 'MIT',
+  //   'array-flatten@1.1.1': 'MIT',
+  //   ...
+  // }
+})();
+```
 
 
 
