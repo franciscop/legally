@@ -3,6 +3,7 @@
 // This bit only handles the Command Line Interface API, while the index.js
 // handles the actual parsing
 var legally = require('./');
+var analysis = require('./lib/analysis');
 var opt = require('minimist')(process.argv.filter(e => !/\/.+$/.test(e)));
 
 // node on windows inserts extra into argv that we need to remove
@@ -15,4 +16,7 @@ opt.routes = opt._;
 
 var done = (function wait () { if (!done) setTimeout(wait, 1000) })();
 
-legally(opt).then(licenses => analysis(licenses, opt));
+Promise.resolve(legally(opt)).then(function(licenses) {
+  analysis(licenses, opt);
+  done = true;
+});
