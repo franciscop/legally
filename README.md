@@ -138,8 +138,6 @@ legally --width 100
 
 ## Node.js API
 
-> **warning**: the Node.js API is fully sync so far, [please track this issue](https://github.com/franciscop/legally/issues/19). I highly recommend *not* to use this in a production environment until that issue is closed since it will block your thread.
-
 ```js
 const legally = require('legally');
 
