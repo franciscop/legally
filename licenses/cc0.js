@@ -1,6 +1,6 @@
 module.exports.name = 'CC0';
 
-module.exports.regex = /CC0/;
+module.exports.regex = /cc0/i;
 
 module.exports.text = `
   The person who associated a work with this deed has dedicated the work to the

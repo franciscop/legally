@@ -1,6 +1,8 @@
-var parsers = require('./parsers');
+const lics = require('../licenses');
 
 module.exports = function(text) {
+  text = text.replace(/^\W*/, '').replace(/\W*$/, '');
+
   if (text && text.length > 1) {
     text = text.replace(/[\-\,]+/g, ' ').replace(/\s+/g, ' ');
   }
@@ -17,7 +19,7 @@ module.exports = function(text) {
     text = text.replace(/(L|l)icense\s*/, '');
   }
 
-  var found = parsers.find(parser => parser.regex.test(text));
+  var found = lics.find(lic => lic.regex.test(text));
   if (found) return found.name;
 
   if (/MIT\/X11/.test(text)) {

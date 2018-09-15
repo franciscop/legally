@@ -1,6 +1,6 @@
 module.exports.name = 'ISC';
 
-module.exports.regex = /(?:The )?ISC(?: (L|l)icense)/;
+module.exports.regex = /(?:the )?isc(?: license)/i;
 
 module.exports.text = `
   Permission to use, copy, modify, and/or distribute this software for any

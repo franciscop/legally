@@ -1,7 +1,7 @@
 
 module.exports.name = 'Unlicense';
 
-module.exports.regex = /(?:The )?Unlicense(?: (L|l)icense)/;
+module.exports.regex = /(?:the )?unlicense(?: license)/i;
 
 module.exports.text = `
   This is free and unencumbered software released into the public domain.

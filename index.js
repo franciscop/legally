@@ -1,8 +1,8 @@
-var legally = require('./lib/legally');
-var analysis = require('./lib/analysis');
-var remote = require('./lib/remote');
+var legally = require('./src/legally');
+var analysis = require('./src/analysis');
+var remote = require('./src/remote');
 
-module.exports = (opt) => {
+module.exports = async opt => {
   opt = opt || {};
   if (typeof opt === 'string') {
     opt = { routes: [opt] };
@@ -36,18 +36,6 @@ module.exports = (opt) => {
   opt.width = opt.width || 80;
   opt.width = typeof opt.width === 'number' ? opt.width : 80;
 
-  var licenses;
-  if (!opt.routes.length) return legally(process.cwd());
-
-  return remote(opt.routes).then(function (folder){
-    console.log(folder);
-    if (!folder) {
-      console.log('Could not handle remote packages');
-      process.exit();
-    }
-    return legally(folder);
-  }).catch(function(error) {
-    console.log(error);
-    process.exit();
-  });
+  const folder = await remote(opt.routes);
+  return await legally(folder);
 };

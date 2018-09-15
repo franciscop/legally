@@ -1,7 +1,7 @@
 
 module.exports.name = 'MIT';
 
-module.exports.regex = /(?:The )?MIT(?: (L|l)icense)/;
+module.exports.regex = /(?:the )?mit(?: license)/i;
 
 module.exports.text = `
   Permission is hereby granted, free of charge, to any person obtaining a copy

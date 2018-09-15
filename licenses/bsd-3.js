@@ -1,7 +1,6 @@
-
 module.exports.name = 'BSD 3 Clause';
 
-module.exports.regex = /(?:The )?BSD(?: (L|l)icense)/;
+module.exports.regex = /(?:the )?bsd(?: license)/i;
 
 module.exports.text = `
   Redistribution and use in source and binary forms, with or without

@@ -14,7 +14,7 @@ It will display first those node_modules' licenses:
 
 ![Licenses](images/packages.png)
 
-> `-` means the license couldn't be found and `? verify` that it was found but couldn't be parsed
+> `-` means the license couldn't be found and `?` that it was found but couldn't be parsed
 
 And then the license count in your project (different example from the one above):
 

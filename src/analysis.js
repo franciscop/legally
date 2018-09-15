@@ -1,18 +1,25 @@
-var table = require('./table');
-var filters = require('./filters');
+const table = require('./table');
+const normal = require('./normalize');
+
+const filters = ({ filter, type }) => lic => {
+  lic = normal(lic);
+  filter = filter.map(normal);
+  type = type.map(normal);
+  if (!lic || (!filter.length && !type.length)) return true;
+  return filter.some(fil => lic.includes(fil)) || type.includes(lic);
+}
 
 module.exports = function(licenses, opt){
-  if (Object.keys(licenses).length === 0) {
-    console.error('No modules installed. Are you in the right directory?');
-    return;
+  if (!Object.keys(licenses).length) {
+    throw new Error('No modules found. Are you in the right directory?');
   }
 
-  // Display all of the info of the packages
-  var data = Object.keys(licenses).map(key => {
-    var one = licenses[key];
-    return [key].concat(Object.keys(one)
-      .map(name => one[name].filter(filters(opt.filter, opt.type)).join(' + ') || '-'));
-  });
+  const display = item => item.filter(filters(opt)).join(' + ') || '-';
+  const data = Object.entries(licenses).map(([
+    name, { package, copying, readme }
+  ]) => [
+    name, display(package), display(copying), display(readme)
+  ]);
 
   if (opt.show.includes('packages')) {
     table(data, {
@@ -20,7 +27,7 @@ module.exports = function(licenses, opt){
       'package': parseInt(14 * opt.width / 80),
       'License': parseInt(14 * opt.width / 80),
       'README': parseInt(14 * opt.width / 80)
-    }, Object.assign({ title: 'Packages (' + data.length + ')', repeat: 50 }, opt));
+    }, { title: 'Packages (' + data.length + ')', repeat: 50, ...opt });
   }
 
 
