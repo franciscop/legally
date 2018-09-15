@@ -1,6 +1,9 @@
 const { tmpdir } = require('os');
-const { join, mkdir, remove } = require('fs-array');
+const { exists, join, mkdir, remove, stat } = require('fs-array');
 const exec = require('util').promisify(require('child_process').exec);
+
+// Cache time of 100000 seconds
+const CACHE = parseInt(process.env.CACHE || 100000, 10);
 
 // Allow only for alphanumeric and special characters _.-@
 const sanitize = name => name
@@ -12,8 +15,18 @@ module.exports = async packages => {
   if (!packages || !packages.length) return './node_modules';
   console.log("Working on it. It will take a while...");
 
-  // Create an empty temporary file
-  const tmp = await mkdir(join(tmpdir(), 'legally')).then(remove).then(mkdir);
+  // Create an empty namespaced temporary folder
+  const tmp = join(tmpdir(), 'legally', 'pack-' + packages.join('-'));
+
+  // It is already cached, so we don't need to worry about it
+  if (await exists(tmp) && (new Date() - await stat(tmp).atime) < CACHE) {
+    return tmp;
+  }
+  // Remove ramining files somehow
+  if (await exists(join(tmpdir(), 'legally', 'package.json'))) {
+    await mkdir(join(tmpdir(), 'legally')).then(remove).then(mkdir);
+  }
+  await mkdir(tmp).then(remove).then(mkdir);
   const packs = packages.map(sanitize).join(' ');
   // Need to be in a single place to keep the folder context
   await exec(`cd "${tmp}" && npm init --yes && npm install ${packs} --ignore-scripts`);
