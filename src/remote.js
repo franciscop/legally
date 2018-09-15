@@ -15,17 +15,24 @@ module.exports = async packages => {
   if (!packages || !packages.length) return './node_modules';
   console.log("Working on it. It will take a while...");
 
-  // Create an empty namespaced temporary folder
-  const tmp = join(tmpdir(), 'legally', 'pack-' + packages.join('-'));
-
-  // It is already cached, so we don't need to worry about it
-  if (await exists(tmp) && (new Date() - await stat(tmp).atime) < CACHE) {
-    return tmp;
+  if (!(await exists(join(tmpdir(), 'legally')))) {
+    await mkdir(join(tmpdir(), 'legally'))
   }
+
   // Remove ramining files somehow
   if (await exists(join(tmpdir(), 'legally', 'package.json'))) {
     await mkdir(join(tmpdir(), 'legally')).then(remove).then(mkdir);
   }
+
+  // Create an empty namespaced temporary folder
+  const tmp = join(tmpdir(), 'legally', 'pack-' + packages.join('-'));
+
+  // It is already cached, so we don't need to worry about it
+  if (await exists(tmp) && new Date() - await stat(tmp).atime < CACHE) {
+    return tmp;
+  }
+
+  // Create the temporary folder
   await mkdir(tmp).then(remove).then(mkdir);
   const packs = packages.map(sanitize).join(' ');
   // Need to be in a single place to keep the folder context
