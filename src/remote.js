@@ -29,7 +29,7 @@ module.exports = async packages => {
 
   // It is already cached, so we don't need to worry about it
   if (await exists(tmp) && new Date() - await stat(tmp).atime < CACHE) {
-    return tmp;
+    return join(tmp, 'node_modules');
   }
 
   // Create the temporary folder
@@ -37,5 +37,5 @@ module.exports = async packages => {
   const packs = packages.map(sanitize).join(' ');
   // Need to be in a single place to keep the folder context
   await exec(`cd "${tmp}" && npm init --yes && npm install ${packs} --ignore-scripts`);
-  return tmp;
+  return join(tmp, 'node_modules');
 };
