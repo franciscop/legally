@@ -7,8 +7,8 @@ const CACHE = parseInt(process.env.CACHE || 100000, 10);
 
 // Allow only for alphanumeric and special characters _.-@
 const sanitize = name => name
-  .replace(/^[^\w]/, '')   // Begins by a letter, number or underscore
-  .replace(/[^\w\-.@]/g, '')
+  .replace(/^[^\w@]/, '')   // Begins by a letter, number or underscore
+  .replace(/[^\w\-.@\/]/g, '')
   .replace(/[^\w]$/, '');   // Ends by a letter, number or underscore
 
 module.exports = async packages => {
