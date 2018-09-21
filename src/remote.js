@@ -13,7 +13,6 @@ const sanitize = name => name
 
 module.exports = async packages => {
   if (!packages || !packages.length) return './node_modules';
-  console.log("Working on it. It will take a while...");
 
   if (!(await exists(join(tmpdir(), 'legally')))) {
     await mkdir(join(tmpdir(), 'legally'))

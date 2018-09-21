@@ -36,6 +36,7 @@ module.exports = async opt => {
   opt.width = opt.width || 80;
   opt.width = typeof opt.width === 'number' ? opt.width : 80;
 
+  console.log("Working on it. It will take a while...");
   const folder = await remote(opt.routes);
   return await legally(folder);
 };
