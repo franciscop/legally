@@ -22,7 +22,7 @@ var done = (function wait () { if (!done) setTimeout(wait, 1000) })();
 (async () => {
   try {
     const options = clean(args);
-    console.log("Working on it. It will take a while...", args);
+    console.log("Working on it. It might take a while...");
     const licenses = await legally(options);
     await analysis(licenses, options);
   } catch(error) {

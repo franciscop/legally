@@ -24,14 +24,12 @@ module.exports = async packages => {
   }
 
   // Create an empty namespaced temporary folder
-  const tmp = join(tmpdir(), 'legally', 'pack-' + sanitize(packages.join('-')));
+  const tmp = join(tmpdir(), 'legally', 'pack-' + packages.map(sanitize).join('-'));
 
   // It is already cached, so we don't need to worry about it
   if (await exists(tmp) && new Date() - await stat(tmp).atime < CACHE) {
     return join(tmp, 'node_modules');
   }
-
-  console.log('Temporary:', tmp);
 
   // Create the temporary folder
   await mkdir(tmp).then(remove).then(mkdir);
