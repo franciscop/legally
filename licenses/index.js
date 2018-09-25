@@ -1,5 +1,6 @@
 module.exports = [
   './apache',
+  './apache-2',
   './bsd-2',
   './bsd-3',
   './cc0',
