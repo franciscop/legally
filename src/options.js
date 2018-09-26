@@ -1,3 +1,5 @@
+const valid = name => require('validate-npm-package-name')(name).validForNewPackages;
+
 module.exports = (opt = {}) => {
   // Clone the object to avoid modifying the reference
   opt = JSON.parse(JSON.stringify(opt));
@@ -5,7 +7,7 @@ module.exports = (opt = {}) => {
   // Make sure it is of the right type
   if (typeof opt === 'string') opt = { routes: [opt] };
   if (Array.isArray(opt)) opt = { routes: opt };
-  opt.routes = opt.routes || [];
+  opt.routes = (opt.routes || []).filter(valid);
 
   opt.show = opt.show || [];
   opt.show = Array.isArray(opt.show) ? opt.show : [opt.show];

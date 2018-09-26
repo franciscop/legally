@@ -24,7 +24,7 @@ module.exports = async packages => {
   }
 
   // Create an empty namespaced temporary folder
-  const tmp = join(tmpdir(), 'legally', 'pack-' + packages.map(sanitize).join('-'));
+  const tmp = join(tmpdir(), 'legally', 'pack-' + packages.join('-'));
 
   // It is already cached, so we don't need to worry about it
   if (await exists(tmp) && new Date() - await stat(tmp).atime < CACHE) {

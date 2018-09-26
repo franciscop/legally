@@ -22,7 +22,7 @@ var done = (function wait () { if (!done) setTimeout(wait, 1000) })();
 (async () => {
   try {
     const options = clean(args);
-    console.log("Working on it. It might take a while...");
+    console.log(`Working on "${options.routes.join(', ') || '.'}". It might take a while...`);
     const licenses = await legally(options);
     await analysis(licenses, options);
   } catch(error) {
