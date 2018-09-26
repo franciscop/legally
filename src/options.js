@@ -1,4 +1,4 @@
-const valid = name => require('validate-npm-package-name')(name).validForNewPackages;
+const invalid = name => !require('validate-npm-package-name')(name).validForNewPackages;
 
 module.exports = (opt = {}) => {
   // Clone the object to avoid modifying the reference
@@ -7,7 +7,12 @@ module.exports = (opt = {}) => {
   // Make sure it is of the right type
   if (typeof opt === 'string') opt = { routes: [opt] };
   if (Array.isArray(opt)) opt = { routes: opt };
-  opt.routes = (opt.routes || []).filter(valid);
+  opt.routes = opt.routes || [];
+  
+  const bad = opt.routes.find(invalid);
+  if (bad) {
+    throw new Error(`Invalid package name: "${bad}"`);
+  }
 
   opt.show = opt.show || [];
   opt.show = Array.isArray(opt.show) ? opt.show : [opt.show];
