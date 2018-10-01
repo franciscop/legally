@@ -4,8 +4,8 @@ const searchJson = require('./search_json');
 
 // Search for text in any of the matching regex files for the root
 const search = (root, regex) => list(root)
-  .filter(file => stat(file).isFile())
   .filter(file => regex.test(file))
+  .filter(file => stat(file).isFile())
   .map(read)
   .map(searchText)
   .reduce((all, one) => [...all, ...one], []);
