@@ -1,9 +1,10 @@
-const { join, list, read, walk } = require('fs-array');
+const { join, list, read, stat, walk } = require('fs-array');
 const searchText = require('./search_text');
 const searchJson = require('./search_json');
 
 // Search for text in any of the matching regex files for the root
 const search = (root, regex) => list(root)
+  .filter(file => stat(file).isFile())
   .filter(file => regex.test(file))
   .map(read)
   .map(searchText)
