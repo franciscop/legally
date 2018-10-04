@@ -16,9 +16,9 @@ module.exports = function(licenses, opt){
 
   const display = item => item.filter(filters(opt)).join(' + ') || '-';
   const data = Object.entries(licenses).map(([
-    name, { package, copying, readme }
+    name, { package: pack, copying, readme }
   ]) => [
-    name, display(package), display(copying), display(readme)
+    name, display(pack), display(copying), display(readme)
   ]);
 
   if (opt.show.includes('packages')) {
