@@ -18,12 +18,12 @@ describe('legally', () => {
   });
 
   it('huncwot: file in folder called package.json', async () => {
-    const bacon = await legally('baconjs');
-    const name = Object.keys(bacon)[0];
+    const hunc = await legally('huncwot');
+    const name = Object.keys(hunc).find(key => /huncwot/.test(key));
     expect(name.split('@')[0]).toBe('huncwot');
-    const licenses = Object.values(bacon)[0];
+    const licenses = hunc[name];
     expect(Array.isArray(licenses.package)).toBe(true);
     expect(Array.isArray(licenses.copying)).toBe(true);
     expect(Array.isArray(licenses.readme)).toBe(true);
-  });
+  }, 30000);  // Fairly large package
 });
