@@ -19,7 +19,6 @@ const isReadme = /readme(\.md|\.txt)?$/i;
 
 // Root project to analize
 module.exports = (root = './node_modules') => walk(root)
-  .map(file => { console.log(file); return file; })
   .filter(file => isPackage.test(file))    // Only find package.json parent folders
   .filter(file => !/\/test\//.test(file))  // Avoid looking into some resolver tests
   .map(pkg => pkg.replace(isPackage, '')).map(async root => ({
