@@ -9,6 +9,7 @@ describe('legally', () => {
 
   it('baconjs: folder called "readme"', async () => {
     const bacon = await legally('baconjs');
+    console.log('BACON:', bacon);
     const name = Object.keys(bacon)[0];
     expect(name.split('@')[0]).toBe('baconjs');
     const licenses = Object.values(bacon)[0];
