@@ -7,7 +7,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest index --coverage",
     "start": "node cli.js"
   },
   "bin": {
