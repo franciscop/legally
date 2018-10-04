@@ -1,4 +1,4 @@
-# Legally - `legally`
+# Legally - `legally` [![Windows Build](https://img.shields.io/appveyor/ci/franciscop/legally.svg?label=windows)](https://ci.appveyor.com/project/franciscop/legally)
 
 > Disclaimer: I am not a lawyer and this is not legal advice
 

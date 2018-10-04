@@ -13,7 +13,7 @@ const search = (root, regex) => list(root)
 // Require an absolute package
 const pack = path => require(join(path, 'package.json'))
 
-const isPackage = /\/package\.json$/;
+const isPackage = /(\/|\\)package\.json$/;
 const isLicense = /(license|copying)(\.md|\.txt)?$/i;
 const isReadme = /readme(\.md|\.txt)?$/i;
 
