@@ -1,6 +1,6 @@
 environment:
   matrix:
-    - nodejs_version: "8.0"
+    - nodejs_version: "8.9"
 cache:
   - node_modules
 install:
