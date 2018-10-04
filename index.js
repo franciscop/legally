@@ -6,6 +6,7 @@ const clean = require('./src/options');
 module.exports = async opts => {
   // Clean the options with the right defaults
   opts = clean(opts);
+  console.log('OPTIONS');
   const folder = await remote(opts.routes);
   return await legally(folder);
 };
