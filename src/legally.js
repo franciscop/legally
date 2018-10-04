@@ -11,7 +11,13 @@ const search = (root, regex) => list(root)
   .reduce((all, one) => [...all, ...one], []);
 
 // Require an absolute package
-const pack = path => require(join(path, 'package.json'))
+const pack = path => {
+  try {
+    return require(join(path, 'package.json'));
+  } catch (error) {
+    return;
+  }
+};
 
 const isPackage = /(\/|\\)package\.json$/;
 const isLicense = /(license|copying)(\.md|\.txt)?$/i;
@@ -21,7 +27,9 @@ const isReadme = /readme(\.md|\.txt)?$/i;
 module.exports = (root = './node_modules') => walk(root)
   .filter(file => isPackage.test(file))    // Only find package.json parent folders
   .filter(file => !/\/test\//.test(file))  // Avoid looking into some resolver tests
-  .map(pkg => pkg.replace(isPackage, '')).map(async root => ({
+  .map(pkg => pkg.replace(isPackage, ''))
+  .filter(file => pack(file))
+  .map(async root => ({
     name: pack(root).name + '@' + pack(root).version,
     package: searchJson(pack(root)),
     copying: await search(root, isLicense),
