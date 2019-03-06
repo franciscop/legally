@@ -22,11 +22,12 @@ const pack = path => {
 const isPackage = /(\/|\\)package\.json$/;
 const isLicense = /(license|copying)(\.md|\.txt)?$/i;
 const isReadme = /readme(\.md|\.txt)?$/i;
+const isTestFile = /(\/test\/)|(\\test\\)/
 
 // Root project to analize
 module.exports = (root = './node_modules') => walk(root)
   .filter(file => isPackage.test(file))    // Only find package.json parent folders
-  .filter(file => !/\/test\//.test(file))  // Avoid looking into some resolver tests
+  .filter(file => !isTestFile.test(file))  // Avoid looking into some resolver tests
   .map(pkg => pkg.replace(isPackage, ''))
   .filter(file => pack(file))
   .map(async root => ({
