@@ -1,3 +1,6 @@
+# Not applicable for modules
+package-lock.json
+
 # Logs
 logs
 *.log
