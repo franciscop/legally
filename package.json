@@ -17,7 +17,6 @@
   "license": "MIT",
   "dependencies": {
     "files": "^1.0.1",
-    "fs-array": "^2.2.1",
     "minimist": "^1.2.0",
     "validate-npm-package-name": "^3.0.0"
   },
