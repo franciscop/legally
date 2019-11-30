@@ -27,23 +27,6 @@ const isTestFile = /(\/test\/)|(\\test\\)/;
 
 // Root project to analize
 module.exports = async (root = "./node_modules") => {
-  console.log(
-    "LOG:",
-    root,
-    await walk(root)
-      .filter(file => isPackage.test(file)) // Only find package.json parent folders
-      .filter(file => !isTestFile.test(file)) // Avoid looking into some resolver tests
-      .map(pkg => pkg.replace(isPackage, ""))
-      .filter(file => pack(file))
-      .map(async root => ({
-        name: (await pack(root)).name + "@" + (await pack(root)).version,
-        package: searchJson(await pack(root)),
-        copying: await search(root, isLicense),
-        readme: await search(root, isReadme)
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .reduce((obj, { name, ...one }) => ({ ...obj, [name]: one }), {})
-  );
   return walk(root)
     .filter(file => isPackage.test(file)) // Only find package.json parent folders
     .filter(file => !isTestFile.test(file)) // Avoid looking into some resolver tests
