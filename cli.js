@@ -2,10 +2,10 @@
 
 // This bit only handles the Command Line Interface API, while the index.js
 // handles the actual parsing
-const minimist = require('minimist');
-const legally = require('./');
-const analysis = require('./src/analysis');
-const clean = require('./src/options')
+const minimist = require("minimist");
+const legally = require("./");
+const analysis = require("./src/analysis");
+const clean = require("./src/options");
 const args = minimist(process.argv.filter(e => !/^\/.+$/.test(e)));
 
 // node on windows inserts extra into argv that we need to remove
@@ -16,16 +16,20 @@ args.routes = args._;
 
 // Need to wait a bit before resolving
 // See: https://stackoverflow.com/a/50451612/938236
-var done = (function wait () { if (!done) setTimeout(wait, 1000) })();
-
+var done = (function wait() {
+  if (!done) setTimeout(wait, 1000);
+})();
 
 (async () => {
   try {
     const options = clean(args);
-    console.log(`Working on "${options.routes.join(', ') || '.'}". It might take a while...`);
+    console.log(
+      `Working on "${options.routes.join(", ") ||
+        "."}". It might take a while...`
+    );
     const licenses = await legally(options);
     await analysis(licenses, options);
-  } catch(error) {
+  } catch (error) {
     console.error(error, args);
     throw error;
   } finally {
