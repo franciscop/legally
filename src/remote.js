@@ -1,6 +1,7 @@
 const { tmpdir } = require("os");
 const { exists, join, mkdir, remove, stat } = require("files");
-const exec = require("util").promisify(require("child_process").exec);
+const ex = require("child_process").exec;
+const exec = require("util").promisify(ex);
 
 // Cache time of 100000 seconds
 const CACHE = parseInt(process.env.CACHE || 100000, 10);

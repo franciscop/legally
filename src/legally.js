@@ -14,7 +14,9 @@ const search = (root, regex) =>
 // Require an absolute package
 const pack = async path => {
   try {
-    return require(await join(path, "package.json"));
+    return await read(await join(path, "package.json")).then(file =>
+      JSON.parse(file)
+    );
   } catch (error) {
     return;
   }
