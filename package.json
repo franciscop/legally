@@ -3,7 +3,6 @@
   "version": "3.5.0",
   "description": "Check the licenses for the packages that you are using",
   "main": "cli.js",
-  "type": "module",
   "engines": {
     "node": ">=6.0.0"
   },
