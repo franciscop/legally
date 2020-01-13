@@ -7,7 +7,7 @@ describe("legally", () => {
     expect(result).toMatchObject({
       [files]: { package: ["MIT"], copying: ["MIT"], readme: [] }
     });
-  });
+  }, 10000);
 
   it.skip('baconjs: folder called "readme"', async () => {
     const bacon = await legally("baconjs");
