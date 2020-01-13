@@ -2,8 +2,10 @@ const legally = require("./legally");
 
 describe("legally", () => {
   it("works with the current folder", async () => {
-    expect(await legally()).toMatchObject({
-      "files@1.0.1": { package: ["MIT"], copying: ["MIT"], readme: [] }
+    const result = await legally();
+    const files = Object.keys(result).find(k => /^files@/.test(k));
+    expect(result).toMatchObject({
+      [files]: { package: ["MIT"], copying: ["MIT"], readme: [] }
     });
   });
 
