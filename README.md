@@ -1,4 +1,4 @@
-# Legally - `legally` [![Windows Build](https://img.shields.io/appveyor/ci/franciscop/legally.svg?label=windows)](https://ci.appveyor.com/project/franciscop/legally)
+# Legally - `legally` [![Windows Build](https://img.shields.io/appveyor/ci/franciscop/legally.svg?label=windows)](https://ci.appveyor.com/project/franciscop/legally) [![test badge](https://github.com/franciscop/legally/workflows/tests/badge.svg)](https://github.com/franciscop/legally/blob/master/.github/workflows/tests.js)
 
 > Disclaimer: I am not a lawyer and this is not legal advice
 

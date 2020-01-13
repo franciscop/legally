@@ -2,22 +2,40 @@
   "name": "legally",
   "version": "3.5.1",
   "description": "Check the licenses for the packages that you are using",
-  "main": "cli.js",
-  "engines": {
-    "node": ">=6.0.0"
-  },
+  "homepage": "https://github.com/franciscop/legally#readme",
+  "repository": "https://github.com/franciscop/legally.git",
+  "funding": "https://www.paypal.me/franciscopresencia/19",
+  "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
+  "license": "MIT",
   "scripts": {
     "build": "rollup -c",
+    "pretest": "npm run build",
     "test": "jest --coverage"
   },
+  "keywords": [
+    "legally",
+    "licenses",
+    "check",
+    "legal",
+    "package",
+    "npm",
+    "open",
+    "opensource"
+  ],
+  "main": "cli.js",
   "bin": {
     "legally": "cli.js"
   },
-  "author": "Francisco Presencia (https://francisco.io/)",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "files": [
     "index.min.js"
   ],
-  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {},
   "devDependencies": {
     "files": "^1.0.1",
@@ -30,25 +48,5 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
     "validate-npm-package-name": "^3.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/franciscop/legally.git"
-  },
-  "keywords": [
-    "legally",
-    "licenses",
-    "check",
-    "legal",
-    "package",
-    "npm"
-  ],
-  "bugs": {
-    "url": "https://github.com/franciscop/legally/issues"
-  },
-  "homepage": "https://github.com/franciscop/legally#readme",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
   }
 }
