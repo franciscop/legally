@@ -1,4 +1,4 @@
-const legally = require("./legally");
+const legally = require("../index.min.js");
 
 describe("legally", () => {
   it("works with the current folder", async () => {

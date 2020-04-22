@@ -1,6 +1,6 @@
 {
   "name": "legally",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "description": "Check the licenses for the packages that you are using",
   "homepage": "https://github.com/franciscop/legally#readme",
   "repository": "https://github.com/franciscop/legally.git",
@@ -22,9 +22,9 @@
     "open",
     "opensource"
   ],
-  "main": "cli.js",
+  "main": "index.min.js",
   "bin": {
-    "legally": "cli.js"
+    "legally": "index.min.js"
   },
   "directories": {
     "lib": "lib",
