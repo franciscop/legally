@@ -14,7 +14,11 @@ export default {
   plugins: [
     json(),
     resolve({ preferBuiltins: true }),
-    commonjs(),
+    commonjs({
+      ignore: [
+        'main'
+      ]
+    }),
     terser(),
     banner("<%= pkg.name %> by <%= pkg.author %>")
   ]

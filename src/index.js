@@ -43,16 +43,12 @@ async function RunNow()
   }
 }
 
+module.exports = legally;
 (async () =>
 {
-  if (require.main === module)
+  if (require.main.id === '.')
   {
     // CLI mode
     await RunNow();
-  }
-  else
-  {
-    // Required as a nodeJS module
-    module.exports = legally;
   }
 })();
