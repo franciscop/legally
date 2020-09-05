@@ -1,4 +1,5 @@
 const { join, list, read, stat, walk } = require("files");
+const { relative, isAbsolute } = require("path");
 const searchText = require("./search_text");
 const searchJson = require("./search_json");
 
@@ -30,6 +31,16 @@ const isTestFile = /(\/test\/)|(\\test\\)/;
 // Root project to analize
 module.exports = async (root = "./node_modules") => {
   return walk(root)
+    .map(file => {
+      // If the root path is relative, then the file path being used should also be
+      // relative to avoid accidentally excluding a path containing "test" further
+      // up the file structure.
+      if (!isAbsolute(root)) {
+        file = relative(process.cwd(), file);
+      }
+
+      return file;
+    })
     .filter(file => isPackage.test(file)) // Only find package.json parent folders
     .filter(file => !isTestFile.test(file)) // Avoid looking into some resolver tests
     .map(pkg => pkg.replace(isPackage, ""))
