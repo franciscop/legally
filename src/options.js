@@ -1,5 +1,10 @@
 const validate = require("validate-npm-package-name");
 const invalid = name => !validate(name).validForNewPackages;
+const nameWithoutVersion = entry => {
+  const index = entry.indexOf("@");
+  if (index === -1) { return entry };
+  return entry.substring(0, index);
+}
 
 module.exports = (opt = {}) => {
   // Clone the object to avoid modifying the reference
@@ -10,7 +15,7 @@ module.exports = (opt = {}) => {
   if (Array.isArray(opt)) opt = { routes: opt };
   opt.routes = opt.routes || [];
 
-  const bad = opt.routes.find(invalid);
+  const bad = opt.routes.map(nameWithoutVersion).find(invalid);
   if (bad) {
     throw new Error(`Invalid package name: "${bad}"`);
   }
