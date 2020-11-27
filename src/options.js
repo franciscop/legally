@@ -1,8 +1,8 @@
 const validate = require("validate-npm-package-name");
 const invalid = name => !validate(name).validForNewPackages;
 const nameWithoutVersion = entry => {
-  const index = entry.indexOf("@");
-  if (index === -1) { return entry };
+  const index = entry.lastIndexOf("@");
+  if (index < 1) { return entry };
   return entry.substring(0, index);
 }
 
