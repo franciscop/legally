@@ -45,12 +45,16 @@ module.exports = async (root = "./node_modules") => {
     .filter(file => !isTestFile.test(file)) // Avoid looking into some resolver tests
     .map(pkg => pkg.replace(isPackage, ""))
     .filter(file => pack(file))
-    .map(async root => ({
-      name: (await pack(root)).name + "@" + (await pack(root)).version,
-      package: searchJson(await pack(root)),
-      copying: await search(root, isLicense),
-      readme: await search(root, isReadme)
-    }))
+    .map(async root => {
+      const packageJson = await pack(root);
+      return {
+        name: packageJson.name + "@" + packageJson.version,
+        homepage: packageJson.homepage,
+        package: searchJson(packageJson),
+        copying: await search(root, isLicense),
+        readme: await search(root, isReadme)
+      }
+    })
     .sort((a, b) => a.name.localeCompare(b.name))
     .reduce((obj, { name, ...one }) => ({ ...obj, [name]: one }), {});
 };
