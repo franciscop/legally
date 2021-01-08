@@ -1,10 +1,12 @@
 {
   "name": "legally",
-  "version": "3.5.8",
+  "version": "3.5.9",
   "description": "Check the licenses for the packages that you are using",
   "homepage": "https://github.com/franciscop/legally#readme",
   "repository": "https://github.com/franciscop/legally.git",
-  "funding": "https://www.paypal.me/franciscopresencia/19",
+  "funding": {
+    "url": "https://www.paypal.me/franciscopresencia/19"
+  },
   "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
   "license": "MIT",
   "scripts": {
