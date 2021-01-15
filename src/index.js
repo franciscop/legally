@@ -43,10 +43,19 @@ async function RunNow()
   }
 }
 
-module.exports = legally;
+module.exports = async (args) => {
+  // imported as node-node module and not running via CLI
+  const options = clean(args);
+  const folder = await remote(options.routes);
+  const licenses = await legally(folder);
+  return licenses;
+};
+
 (async () =>
 {
-  if (require.main.id === '.')
+  // require.main is not defined when using import instead of require
+  // checking main.id, as rollup will not provide module
+  if (require.main && require.main.id === '.')
   {
     // CLI mode
     await RunNow();
