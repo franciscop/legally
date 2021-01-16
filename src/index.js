@@ -43,12 +43,12 @@ async function RunNow()
   }
 }
 
-module.exports = legally;
-(async () =>
-{
-  if (require.main.id === '.')
-  {
-    // CLI mode
-    await RunNow();
-  }
-})();
+const api = async (args) => {
+  // imported as node-node module and not running via CLI
+  const options = clean(args);
+  const folder = await remote(options.routes);
+  const licenses = await legally(folder);
+  return licenses;
+};
+api.RunNow = RunNow; // CLI
+module.exports = api;
