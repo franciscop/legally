@@ -39,10 +39,9 @@
   "engines": {
     "node": ">=10.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "files": "^1.1.0",
-    "jest": "^23.6.0",
+    "jest": "^27.0.6",
     "minimist": "^1.2.5",
     "rollup": "^2.7.1",
     "rollup-plugin-banner": "^0.2.1",
