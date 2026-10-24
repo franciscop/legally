@@ -1,5 +1,4 @@
 // Find the licenses in the package.json
-const lics = require('../licenses');
 const clean = require('./clean');
 
 const flat = (all, lic) => [...all, ...(Array.isArray(lic) ? lic : [lic])];

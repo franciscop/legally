@@ -14,7 +14,7 @@ async function RunNow()
 
   // node on windows inserts extra into argv that we need to remove
   // could be a bug in minimist
-  if (/^win/.test(process.platform))
+  if (process.platform.startsWith("win"))
   {
     args._ = args._.slice(2);
   }

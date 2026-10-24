@@ -4,7 +4,7 @@ module.exports = function(text) {
   text = text.replace(/^\W*/, '').replace(/\W*$/, '');
 
   if (text && text.length > 1) {
-    text = text.replace(/[\-\,]+/g, ' ').replace(/\s+/g, ' ');
+    text = text.replace(/[-,]+/g, ' ').replace(/\s+/g, ' ');
   }
 
   if (/(V|v)ersion\s\d/.test(text)) {

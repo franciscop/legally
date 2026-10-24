@@ -36,7 +36,7 @@ module.exports = function(licenses, opt){
     // Only valid names and make a unique license type per package
     one = [...new Set(one.slice(1)
       .reduce((all, one) => all.concat(one.split(' + ')), [])
-      .filter(name => /^[^\?\-]/.test(name))
+      .filter(name => /^[^?-]/.test(name))
       .filter((name, i, all) => !(name === 'Apache' && all.includes('Apache 2.0')))
       .filter((name, i, all) => !(name === 'BSD' && all.find(a => /BSD\s\d/.test(a))))
     )];
@@ -54,7 +54,7 @@ module.exports = function(licenses, opt){
       if(a.name > b.name) return 1;
       return 0;
     })
-    .map((lic, i, all) => [lic.name, lic.number, parseInt(lic.part * 100) ]);
+    .map((lic) => [lic.name, lic.number, parseInt(lic.part * 100) ]);
 
   if (opt.show.includes('licenses')) {
     table(count, {
@@ -70,7 +70,7 @@ module.exports = function(licenses, opt){
 
   var facts = [];
 
-  var licensed = data.map(e => e.slice(1).join('')).filter(e => !/^\-+$/.test(e));
+  var licensed = data.map(e => e.slice(1).join('')).filter(e => !/^-+$/.test(e));
 
   if (licensed.length === data.length) {
     facts.push(['Great! All the dependencies are licensed']);
@@ -87,7 +87,7 @@ module.exports = function(licenses, opt){
     }
   }
 
-  var verify = data.filter(e => e.slice(1).filter(e => /^\?/.test(e)).length);
+  var verify = data.filter(e => e.slice(1).filter(e => String(e).startsWith("?")).length);
   if (verify.length) {
     var one = verify.length === 1;
     facts.push(['There ' + (one ? 'is' : 'are') + ' ' + verify.length + ' dependenc' + (one ? 'y' : 'ies') + ' that could not be parsed automatically']);

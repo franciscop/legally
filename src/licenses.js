@@ -171,7 +171,7 @@ module.exports = [{
   "identifier": "Artistic-1.0-cl8",
   "shortIdentifier": "Artistic",
   "osiApproved": true,
-  "regex": /Artistic-1.0-cl8|Artistic(.)License(.)1.0(.)w\\/clause(.)8|Artistic/i
+  "regex": /Artistic-1.0-cl8|Artistic(.)License(.)1.0(.)w\/clause(.)8|Artistic/i
 }, {
   "name": "Artistic License 2.0",
   "identifier": "Artistic-2.0",
@@ -231,7 +231,7 @@ module.exports = [{
   "identifier": "BSD-2-Clause",
   "shortIdentifier": "BSD",
   "osiApproved": true,
-  "regex": /BSD-2-Clause|\"BSD(.)2-clause(.)\"\"Simplified\"\"(.)License\"|BSD/i
+  "regex": /BSD-2-Clause|"BSD(.)2-clause(.)""Simplified""(.)License"|BSD/i
 }, {
   "name": "BSD 2-clause FreeBSD License",
   "identifier": "BSD-2-Clause-FreeBSD",
@@ -249,7 +249,7 @@ module.exports = [{
   "identifier": "BSD-3-Clause",
   "shortIdentifier": "BSD",
   "osiApproved": true,
-  "regex": /BSD-3-Clause|\"BSD(.)3-clause(.)\"\"New\"\"(.)or(.)\"\"Revised\"\"(.)License\"|BSD/i
+  "regex": /BSD-3-Clause|"BSD(.)3-clause(.)""New""(.)or(.)""Revised""(.)License"|BSD/i
 }, {
   "name": "BSD 3-clause Clear License",
   "identifier": "BSD-3-Clause-Clear",
@@ -261,7 +261,7 @@ module.exports = [{
   "identifier": "BSD-4-Clause",
   "shortIdentifier": "BSD",
   "osiApproved": false,
-  "regex": /BSD-4-Clause|\"BSD(.)4-clause(.)\"\"Original\"\"(.)or(.)\"\"Old\"\"(.)License\"|BSD/i
+  "regex": /BSD-4-Clause|"BSD(.)4-clause(.)""Original""(.)or(.)""Old""(.)License"|BSD/i
 }, {
   "name": "BSD Protection License",
   "identifier": "BSD-Protection",
@@ -1665,7 +1665,7 @@ module.exports = [{
   "identifier": "TCL",
   "shortIdentifier": "TCL",
   "osiApproved": false,
-  "regex": /TCL|TCL\\/TK(.)License|TCL/i
+  "regex": /TCL|TCL\/TK(.)License|TCL/i
 }, {
   "name": "The Unlicense",
   "identifier": "Unlicense",
@@ -1707,7 +1707,7 @@ module.exports = [{
   "identifier": "NCSA",
   "shortIdentifier": "NCSA",
   "osiApproved": true,
-  "regex": /NCSA|University(.)of(.)Illinois\\/NCSA(.)Open(.)Source(.)License|NCSA/i
+  "regex": /NCSA|University(.)of(.)Illinois\/NCSA(.)Open(.)Source(.)License|NCSA/i
 }, {
   "name": "Vim License",
   "identifier": "Vim",
@@ -1833,7 +1833,7 @@ module.exports = [{
   "identifier": "zlib-acknowledgement",
   "shortIdentifier": "Zlib",
   "osiApproved": false,
-  "regex": /zlib-acknowledgement|zlib\\/libpng(.)License(.)with(.)Acknowledgement|Zlib/i
+  "regex": /zlib-acknowledgement|zlib\/libpng(.)License(.)with(.)Acknowledgement|Zlib/i
 }, {
   "name": "Zope Public License 1.1",
   "identifier": "ZPL-1.1",

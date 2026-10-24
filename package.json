@@ -3,7 +3,7 @@
   "version": "3.5.10",
   "description": "Check the licenses for the packages that you are using",
   "homepage": "https://github.com/franciscop/legally#readme",
-  "repository": "https://github.com/franciscop/legally.git",
+  "repository": "github:franciscop/legally",
   "funding": {
     "url": "https://www.paypal.me/franciscopresencia/19"
   },
@@ -12,7 +12,8 @@
   "scripts": {
     "build": "rollup -c",
     "pretest": "npm run build",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "oxlint cli.js src"
   },
   "keywords": [
     "legally",
@@ -39,11 +40,11 @@
   "engines": {
     "node": ">=10.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "files": "^1.1.0",
     "jest": "^23.6.0",
     "minimist": "^1.2.5",
+    "oxlint": "^1.89.0",
     "rollup": "^2.7.1",
     "rollup-plugin-banner": "^0.2.1",
     "rollup-plugin-commonjs": "^10.1.0",

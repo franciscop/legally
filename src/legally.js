@@ -18,6 +18,7 @@ const pack = async path => {
     return await read(await join(path, "package.json")).then(file =>
       JSON.parse(file)
     );
+  // oxlint-disable-next-line no-unused-vars
   } catch (error) {
     return;
   }

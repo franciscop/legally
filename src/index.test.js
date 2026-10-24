@@ -3,7 +3,7 @@ const legally = require("../index.min.js");
 describe("legally", () => {
   it("works with the current folder", async () => {
     const result = await legally();
-    const files = Object.keys(result).find(k => /^files@/.test(k));
+    const files = Object.keys(result).find(k => k.startsWith("files@"));
     expect(result).toMatchObject({
       [files]: { package: ["MIT"], copying: ["MIT"], readme: [] }
     });

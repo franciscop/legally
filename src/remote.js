@@ -10,7 +10,7 @@ const CACHE = parseInt(process.env.CACHE || 100000, 10);
 const sanitize = name =>
   name
     .replace(/^[^\w@]/, "") // Begins by a letter, number or underscore
-    .replace(/[^\w\-.@\/]/g, "") // Remove any forward slash
+    .replace(/[^\w\-.@/]/g, "") // Remove any forward slash
     .replace(/[^\w]$/, ""); // Ends by a letter, number or underscore
 
 module.exports = async packages => {
