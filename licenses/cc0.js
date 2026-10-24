@@ -1,8 +1,8 @@
-module.exports.name = 'CC0';
+export const name = 'CC0';
 
-module.exports.regex = /cc0/i;
+export const regex = /cc0/i;
 
-module.exports.text = `
+export const text = `
   The person who associated a work with this deed has dedicated the work to the
   public domain by waiving all of his or her rights to the work worldwide under
   copyright law, including all related and neighboring rights, to the extent
@@ -12,4 +12,4 @@ module.exports.text = `
   purposes, all without asking permission.
 `;
 
-module.exports.fragments = module.exports.text.split(/\n\n/);
+export const fragments = text.split(/\n\n/);

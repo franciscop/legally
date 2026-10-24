@@ -1,11 +1,11 @@
-const legally = require("../index.min.js");
+import legally from "./index.js";
 
 describe("legally", () => {
   it("works with the current folder", async () => {
     const result = await legally();
-    const files = Object.keys(result).find(k => k.startsWith("files@"));
+    const files = Object.keys(result).find((k) => k.startsWith("files@"));
     expect(result).toMatchObject({
-      [files]: { package: ["MIT"], copying: ["MIT"], readme: [] }
+      [files]: { package: ["MIT"], copying: ["MIT"], readme: [] },
     });
   }, 10000);
 
@@ -21,7 +21,7 @@ describe("legally", () => {
 
   it.skip("huncwot: file in folder called package.json", async () => {
     const hunc = await legally("huncwot");
-    const name = Object.keys(hunc).find(key => /huncwot/.test(key));
+    const name = Object.keys(hunc).find((key) => /huncwot/.test(key));
     expect(name.split("@")[0]).toBe("huncwot");
     const licenses = hunc[name];
     expect(Array.isArray(licenses.package)).toBe(true);

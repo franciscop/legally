@@ -1,8 +1,8 @@
-module.exports.name = 'BSD 3 Clause';
+export const name = 'BSD 3 Clause';
 
-module.exports.regex = /(?:the )?bsd(?: license)/i;
+export const regex = /(?:the )?bsd(?: license)/i;
 
-module.exports.text = `
+export const text = `
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
 
@@ -29,4 +29,4 @@ module.exports.text = `
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 `;
 
-module.exports.fragments = module.exports.text.split(/\n\n/);
+export const fragments = text.split(/\n\n/);

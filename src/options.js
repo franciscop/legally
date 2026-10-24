@@ -1,12 +1,14 @@
-const validate = require("validate-npm-package-name");
-const invalid = name => !validate(name).validForOldPackages;
-const nameWithoutVersion = entry => {
+import validate from "validate-npm-package-name";
+const invalid = (name) => !validate(name).validForOldPackages;
+const nameWithoutVersion = (entry) => {
   const index = entry.lastIndexOf("@");
-  if (index < 1) { return entry };
+  if (index < 1) {
+    return entry;
+  }
   return entry.substring(0, index);
-}
+};
 
-module.exports = (opt = {}) => {
+export default (opt = {}) => {
   // Clone the object to avoid modifying the reference
   opt = JSON.parse(JSON.stringify(opt));
 

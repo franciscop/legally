@@ -1,3 +1,3 @@
-module.exports.name = 'Apache 2.0';
+export const name = 'Apache 2.0';
 
-module.exports.regex = /(?:the )?apache(?: license)/i;
+export const regex = /(?:the )?apache(?: license)/i;

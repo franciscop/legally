@@ -1,12 +1,12 @@
-module.exports.name = 'BSD 2 Clause';
+export const name = 'BSD 2 Clause';
 
-module.exports.regex = /(?:the )?bsd(?: license)/i;
+export const regex = /(?:the )?bsd(?: license)/i;
 
 // This is because this fragment belongs to the BSD 3 Clause, so while the above
 //  regex matches, this will invalidate this whole match if found
-module.exports.negate = /nor the names of its contributors may be used to endorse/;
+export const negate = /nor the names of its contributors may be used to endorse/;
 
-module.exports.text = `
+export const text = `
   redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are met:
 

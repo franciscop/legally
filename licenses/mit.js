@@ -1,9 +1,9 @@
 
-module.exports.name = 'MIT';
+export const name = 'MIT';
 
-module.exports.regex = /(?:the )?mit(?: license)/i;
+export const regex = /(?:the )?mit(?: license)/i;
 
-module.exports.text = `
+export const text = `
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
   in the Software without restriction, including without limitation the rights
@@ -23,4 +23,4 @@ module.exports.text = `
   THE SOFTWARE.
 `;
 
-module.exports.fragments = module.exports.text.split(/\n\n/);
+export const fragments = text.split(/\n\n/);

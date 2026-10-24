@@ -1,4 +1,4 @@
-module.exports = [{
+export default [{
   "name": "Glide",
   "fullName": "3dfx Glide License",
   "identifier": "Glide",

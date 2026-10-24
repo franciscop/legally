@@ -1,9 +1,9 @@
 
-module.exports.name = 'Unlicense';
+export const name = 'Unlicense';
 
-module.exports.regex = /(?:the )?unlicense(?: license)/i;
+export const regex = /(?:the )?unlicense(?: license)/i;
 
-module.exports.text = `
+export const text = `
   This is free and unencumbered software released into the public domain.
 
   Anyone is free to copy, modify, publish, use, compile, sell, or
@@ -30,4 +30,4 @@ module.exports.text = `
   For more information, please refer to <http://unlicense.org/>
 `;
 
-module.exports.fragments = module.exports.text.split(/\n\n/);
+export const fragments = text.split(/\n\n/);

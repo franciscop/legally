@@ -1,8 +1,8 @@
-module.exports.name = 'ISC';
+export const name = 'ISC';
 
-module.exports.regex = /(?:the )?isc(?: license)/i;
+export const regex = /(?:the )?isc(?: license)/i;
 
-module.exports.text = `
+export const text = `
   Permission to use, copy, modify, and/or distribute this software for any
   purpose with or without fee is hereby granted, provided that the above
   copyright notice and this permission notice appear in all copies.
@@ -16,4 +16,4 @@ module.exports.text = `
   PERFORMANCE OF THIS SOFTWARE.
 `;
 
-module.exports.fragments = module.exports.text.split(/\n\n/);
+export const fragments = text.split(/\n\n/);

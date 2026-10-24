@@ -1,4 +1,5 @@
-var style = require("./style");
+import color from "nocolor";
+import style from "./style.js";
 
 // From https://github.com/zaftzaft/terminal-table/blob/master/index.js
 var p;
@@ -31,13 +32,15 @@ function title(title, widths, opt) {
   var wid = title.length;
   var total = widths.reduce((a, b) => a + b + 3, 0) - 1;
   var left = parseInt((total - wid) / 2);
-  if (!opt.plain) title = "\u001b[1m" + title + "\u001b[22m";
+  if (!opt.plain) title = color("{bright}") + title + color("{/}");
   log(
-    p[0][0] + widths.map(col => p.h + strN(col, p.h) + p.h).join(p.h) + p[0][2]
+    p[0][0] +
+      widths.map((col) => p.h + strN(col, p.h) + p.h).join(p.h) +
+      p[0][2],
   );
-  log(p.v + widths.map(col => " " + strN(col, " ") + " ").join(" ") + p.v);
+  log(p.v + widths.map((col) => " " + strN(col, " ") + " ").join(" ") + p.v);
   log(p.v + strN(left) + title + strN(total - left - wid) + p.v);
-  log(p.v + widths.map(col => " " + strN(col, " ") + " ").join(" ") + p.v);
+  log(p.v + widths.map((col) => " " + strN(col, " ") + " ").join(" ") + p.v);
 }
 
 // |---------------------------|----------------|----------------|----------------|
@@ -45,30 +48,30 @@ function title(title, widths, opt) {
 // |---------------------------|----------------|----------------|----------------|
 function header(columns, opt, repeat, nodisplay) {
   var headers = Object.keys(columns);
-  var widths = headers.map(head => columns[head]);
+  var widths = headers.map((head) => columns[head]);
   var topl = opt.title ? p[1][0] : p[0][0];
   var topr = opt.title ? p[1][2] : p[0][2];
   var topc = repeat ? p[1][1] : p[0][1];
-  log(topl + widths.map(col => p.h + strN(col, p.h) + p.h).join(topc) + topr);
+  log(topl + widths.map((col) => p.h + strN(col, p.h) + p.h).join(topc) + topr);
   if (!nodisplay) {
     log(
       p.v +
         " " +
         headers.map((txt, i) => fixed(txt, widths[i])).join(" " + p.v + " ") +
         " " +
-        p.v
+        p.v,
     );
     log(
       p[1][0] +
-        widths.map(col => p.h + strN(col, p.h) + p.h).join(p[1][1]) +
-        p[1][2]
+        widths.map((col) => p.h + strN(col, p.h) + p.h).join(p[1][1]) +
+        p[1][2],
     );
   }
 }
 
-module.exports = function(data = [], columns = { "-": 76 }, opt = {}) {
+export default function (data = [], columns = { "-": 76 }, opt = {}) {
   var headers = Object.keys(columns);
-  var widths = headers.map(head => columns[head]);
+  var widths = headers.map((head) => columns[head]);
   opt.repeat = opt.repeat || false;
   margin = strN(opt.margin || 0);
 
@@ -91,14 +94,14 @@ module.exports = function(data = [], columns = { "-": 76 }, opt = {}) {
         if (row instanceof Array) row = row.join(" + ");
         all = all + p.v + " " + fixed(row, widths[i]) + " ";
         return all;
-      }, "") + p.v
+      }, "") + p.v,
     );
   });
 
   log(
     p[2][0] +
-      widths.map(col => p.h + strN(col, p.h) + p.h).join(p[2][1]) +
-      p[2][2]
+      widths.map((col) => p.h + strN(col, p.h) + p.h).join(p[2][1]) +
+      p[2][2],
   );
   log("\n");
-};
+}

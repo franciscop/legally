@@ -1,5 +1,5 @@
-module.exports.name = 'Apache';
+export const name = 'Apache';
 
-module.exports.negate = /as defined by Sections 1 through 9 of this document/i;
+export const negate = /as defined by Sections 1 through 9 of this document/i;
 
-module.exports.regex = /(?:the )?apache(?: license)/i;
+export const regex = /(?:the )?apache(?: license)/i;

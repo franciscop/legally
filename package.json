@@ -17,33 +17,26 @@
     "opensource"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "pretest": "npm run build",
-    "test": "jest --coverage",
+    "build": "bun build src/index.js --outfile=index.min.js --minify --format=esm --target=node && npm run build:prettier",
+    "build:prettier": "prettier --write src *.json",
+    "test": "bun test --coverage",
     "lint": "oxlint cli.js src"
   },
   "bin": {
     "legally": "cli.js"
   },
   "main": "index.min.js",
+  "type": "module",
   "files": [
     "index.min.js",
     "cli.js"
   ],
-  "engines": {
-    "node": ">=10.0.0"
-  },
   "devDependencies": {
-    "files": "^1.1.0",
-    "jest": "^23.6.0",
-    "minimist": "^1.2.5",
+    "files": "^3.0.2",
+    "minimist": "^1.2.8",
+    "nocolor": "^1.1.0",
     "oxlint": "^1.89.0",
-    "rollup": "^2.7.1",
-    "rollup-plugin-banner": "^0.2.1",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "validate-npm-package-name": "^3.0.0"
+    "prettier": "^3.9.10",
+    "validate-npm-package-name": "^8.0.0"
   }
 }
