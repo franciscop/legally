@@ -2,19 +2,10 @@
   "name": "legally",
   "version": "3.5.10",
   "description": "Check the licenses for the packages that you are using",
-  "homepage": "https://github.com/franciscop/legally#readme",
   "repository": "github:franciscop/legally",
-  "funding": {
-    "url": "https://www.paypal.me/franciscopresencia/19"
-  },
   "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
+  "funding": "https://www.paypal.me/franciscopresencia/19",
   "license": "MIT",
-  "scripts": {
-    "build": "rollup -c",
-    "pretest": "npm run build",
-    "test": "jest --coverage",
-    "lint": "oxlint cli.js src"
-  },
   "keywords": [
     "legally",
     "licenses",
@@ -25,14 +16,16 @@
     "open",
     "opensource"
   ],
-  "main": "index.min.js",
+  "scripts": {
+    "build": "rollup -c",
+    "pretest": "npm run build",
+    "test": "jest --coverage",
+    "lint": "oxlint cli.js src"
+  },
   "bin": {
     "legally": "cli.js"
   },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
+  "main": "index.min.js",
   "files": [
     "index.min.js",
     "cli.js"
