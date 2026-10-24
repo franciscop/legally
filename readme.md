@@ -1,4 +1,4 @@
-# Legally [![npx legally](https://img.shields.io/badge/npx-legally-blue.svg)](https://www.npmjs.com/package/legally) [![test badge](https://github.com/franciscop/legally/workflows/tests/badge.svg)](https://github.com/franciscop/legally/blob/master/.github/workflows/tests.yml)
+# Legally [![npm install legally](https://img.shields.io/badge/npm%20install-legally-blue.svg)](https://www.npmjs.com/package/legally) [![test badge](https://github.com/franciscop/legally/workflows/tests/badge.svg)](https://github.com/franciscop/legally/blob/master/.github/workflows/tests.yml) [![deps](https://img.shields.io/badge/deps-0-limegreen.svg)](https://github.com/franciscop/legally/blob/master/package.json)
 
 > Disclaimer: I am not a lawyer and this is not legal advice
 
